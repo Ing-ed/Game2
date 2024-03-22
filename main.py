@@ -34,7 +34,7 @@ map_info=  [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 print(map_info)
 
 # jugador
-player = Player("./sprites/PlaceHoldPNJ.png",[0,0])
+player = Player("./sprites/Pj1w.png",[0,0])
 
 
 pg.init()
@@ -55,8 +55,12 @@ while(1):
     DrawScene()
     screen.blit(player.model,player.pos)
     #control de colisiones del personaje
-    print(map_info[int((player.rect[3])/32)][int((player.rect[0]+16)/32)])
-    if(map_info[int((player.rect[3])/32)][int((player.rect[0]+16)/32)] <2):
+    # print(map_info[int((player.rect[3])/32)][int((player.rect[0]+16)/32)])
+    if((int(player.rect[2]/32) >= cols-1 )):
+        player.pos[0] = 0
+    if((int(player.rect[3]/32) >= rows-1 )):
+        player.pos[1] = 0
+    if(map_info[int((player.rect[3])/32)][int((player.rect[0]+(player.width/2))/32)] != 3):
         player.onGround = False
     else:
         player.onGround = True
