@@ -34,7 +34,7 @@ map_info=  [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 print(map_info)
 
 # jugador
-player = Player("./sprites/Pj1w.png",[0,0])
+player = Player(["./sprites/Pj1w.png","./sprites/Pj1.png"],[0,0])
 
 
 pg.init()

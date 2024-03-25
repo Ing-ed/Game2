@@ -2,7 +2,8 @@ import pygame as pg
 import time
 class Player:
     def __init__(self,model,initPos):
-        self.model = pg.image.load(model)
+        self.models = model
+        self.model = pg.image.load(model[0])
         self.width = self.model.get_rect()[2]
         self.heigh = self.model.get_rect()[3]
         self.rotation = 0
@@ -15,7 +16,8 @@ class Player:
         self.speed = 4
         self.gravity = 5
         self.velocity = [0,0]
-        self.jumpDistance = 5     
+        self.jumpDistance = 5
+        self.animate = 0    
 
     def move(self,despX = 0,despY = 0):
         self.width = self.model.get_rect()[2]
@@ -40,10 +42,15 @@ class Player:
             if(not self.onGroundHL):
                 self.move(-1*self.speed,0)#self.pos[0]-= 1
                 self.velocity = [-1*self.speed,0]
+                self.model = pg.image.load(self.models[self.animate])
+                self.animate = self.animate+1 if self.animate < len(self.models)-1 else 0
+                pg.transform.flip(self.model,True,True)
         if(keys[pg.K_d]):
             if(not self.onGroundHR):
                 self.move(1*self.speed,0)#self.pos[0]+= 1
                 self.velocity = [1*self.speed,0]
+                self.model = pg.image.load(self.models[self.animate])
+                self.animate = self.animate+1 if self.animate < len(self.models)-1 else 0
         if(keys[pg.K_s]):
             if(not self.onGround):
                 self.move(0,1)#self.pos[1] += 1
