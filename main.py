@@ -1,6 +1,6 @@
 import pygame as pg
 from pygame import draw
-import numpy as np
+# import numpy as np
 from player import Player
 from math import exp
 import sys
@@ -34,7 +34,7 @@ map_info=  [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 print(map_info)
 
 # jugador
-player = Player(["./sprites/Pj1w.png","./sprites/Pj1.png"],[0,0])
+player = Player(["./sprites/Pj1w.png","./sprites/Pj1.png","./sprites/Pj1SemiPerfil.png"],[0,0])
 
 
 pg.init()
