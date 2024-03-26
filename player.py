@@ -18,6 +18,8 @@ class Player:
         self.velocity = [0,0]
         self.jumpDistance = 5
         self.animate = 0    
+        self.animateFrames = 5
+        self.animateFramesDef = 5
 
     def move(self,despX = 0,despY = 0):
         self.width = self.model.get_rect()[2]
@@ -42,14 +44,18 @@ class Player:
             if(not self.onGroundHL):
                 self.move(-1*self.speed,0)#self.pos[0]-= 1
                 self.velocity = [-1*self.speed,0]
-                self.model = pg.transform.flip(pg.image.load(self.models[self.animate]),True,False)
+                if(self.animateFrames == 0):
+                    self.model = pg.transform.flip(pg.image.load(self.models[self.animate]),True,False) if self.animateFrames == 0 else None
+                self.animateFrames = self.animateFrames - 1 if self.animateFrames > 0 else 10
                 self.animate = self.animate+1 if self.animate < len(self.models)-1 else 0
                 # pg.transform.flip(self.model,True,True)
         if(keys[pg.K_d]):
             if(not self.onGroundHR):
                 self.move(1*self.speed,0)#self.pos[0]+= 1
                 self.velocity = [1*self.speed,0]
-                self.model = pg.image.load(self.models[self.animate])
+                if(self.animateFrames == 0):
+                    self.model = pg.image.load(self.models[self.animate])if self.animateFrames == 0 else None
+                self.animateFrames = self.animateFrames - 1 if self.animateFrames > 0 else 10
                 self.animate = self.animate+1 if self.animate < len(self.models)-1 else 0
         if(keys[pg.K_s]):
             if(not self.onGround):
